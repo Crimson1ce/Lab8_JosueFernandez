@@ -1,0 +1,24 @@
+Josué Fernández, 12011228
+
+1. 	Escogí el inciso #2 porque no terminé toda la funcionalidad del programa. 
+	Pienso que sería muy bueno agregar todas las funciones especificadas,
+	ya que no son muchas las que me hacen falta.
+
+2.	El tema en que más debilidad siento es el de Archivos Binarios, ya que he
+	tenido dificultades en el pasado al momento de cargar objetos y guardar
+	información, porque a veces se pierde parte de ella.
+
+3.	Planeo incluir el tema de archivos binarios guardando todas las personas 
+	y mensajes en archivos binarios, y posiblemente los artículos también. De
+	esa manera se guardarán los datos de las personas ya creadas anteriormente.
+
+4.	Siempre me gustó mucho la temática que le diste a los laboratorios, Claudia,
+	especialmente porque eran cosas interesantes y que me hacían pensar "Yo quiero
+	poder hacer algo como eso". Las historias son divertidas, me encantan siempre.
+	Siento que tienen un buen nivel de dificultad, aunque a veces es fácil perderse
+	o quedarse estancado con lo que se pide, cuando hay varias maneras de hacerlo o
+	no se especifica una. Esto solo me pasó en un lab, que recuerde, pero lo aclaraste
+	al final ☺. Los labs son bastante extensos, tal vez sería bueno reducir las cosas
+	que se necesitan hacer en algunos de los labs, sin reducir la complejidad. En general,
+	has sido una buena instructora. Gracias por todo!
+
