@@ -1,8 +1,9 @@
 package lab8;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Persona {
+public abstract class Persona implements Serializable{
     
     //Atributos
     private long identificacion;

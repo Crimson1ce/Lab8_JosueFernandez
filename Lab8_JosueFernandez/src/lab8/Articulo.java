@@ -88,7 +88,7 @@ public abstract class Articulo {
 
     @Override
     public String toString() {
-        return "Articulo\n" + "Título=" + titulo + ", Color=" + color + ", Descripción=" + descripcionArticulo + ", Editorial=" + editorial + ", Tamaño=" + tamaño + ", Puntuación=" + puntuacion + ", Persona que lo registró=" + personaRegistro;
+        return this.titulo;
     }
 
 }

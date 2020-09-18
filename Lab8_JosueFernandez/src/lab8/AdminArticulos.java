@@ -8,14 +8,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class AdminPersonas {
+public class AdminArticulos {
     
     private File archivo;
-    private ArrayList<Persona> personas;
+    private ArrayList<Articulo> articulos;
 
-    public AdminPersonas() {
-        archivo = new File("./Personas.per");
-        personas = new ArrayList<>();
+    public AdminArticulos() {
+        archivo = new File("./Articulos.art");
+        articulos = new ArrayList<>();
     }
 
     public File getArchivo() {
@@ -26,20 +26,20 @@ public class AdminPersonas {
         this.archivo = archivo;
     }
 
-    public ArrayList<Persona> getPersonas() {
-        return personas;
+    public ArrayList<Articulo> getArticulos() {
+        return articulos;
     }
 
-    public void setPersonas(ArrayList<Persona> personas) {
-        this.personas = personas;
+    public void setArticulos(ArrayList<Articulo> articulos) {
+        this.articulos = articulos;
     }
 
     @Override
     public String toString() {
-        return "AdminPersonas{" + "archivo=" + archivo + ", personas=" + personas + '}';
+        return "AdminArticulos{" + "archivo=" + archivo + ", articulos=" + articulos + '}';
     }
     
-    public void cargarPersonas(){
+    public void cargarArticulos(){
         FileInputStream fi;
         ObjectInputStream oi;
         if (archivo.exists()) {
@@ -47,11 +47,11 @@ public class AdminPersonas {
                 
                 fi = new FileInputStream(archivo);
                 oi = new ObjectInputStream(fi);
-                Persona p;
+                Articulo a;
                 
                 try {
-                    while( (p=(Persona)oi.readObject()) != null ){
-                        personas.add(p);
+                    while( (a=(Articulo)oi.readObject()) != null ){
+                        articulos.add(a);
                     }
                 } catch (EOFException e) {
                 } catch (Exception e){
@@ -65,15 +65,15 @@ public class AdminPersonas {
         }
     }
     
-    public void escribirPersonas(){
+    public void escribirArticulos(){
         FileOutputStream fo;
         ObjectOutputStream oo;
         try {
             fo = new FileOutputStream(archivo, false);
             oo = new ObjectOutputStream(fo);
             
-            for (Persona persona : personas) {
-                oo.writeObject(persona);
+            for (Articulo articulo : articulos) {
+                oo.writeObject(articulo);
             }
             
             oo.close();

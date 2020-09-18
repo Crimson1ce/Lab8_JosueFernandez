@@ -46,7 +46,7 @@ public class Figura extends Articulo{
 
     @Override
     public String toString() {
-        return "Figura\n" + "Descripción de la figura=" + descripcionFigura + ", Instrucciones de armado=" + instruccionesDeArmado + ", Tiempo de garantía=" + tiempoDeGarantia;
+        return "Figura" + super.toString();
     }
     
 }

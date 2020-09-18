@@ -46,7 +46,7 @@ public class Juego extends Articulo{
 
     @Override
     public String toString() {
-        return "Juego\n" + "Número de edición=" + numeroEdicion + ", Casa de elaboración=" + casaDeElaboracion + ",País donde se hizo=" + paisDondeSeHizo;
+        return "Juego" + super.toString();
     }
     
 }

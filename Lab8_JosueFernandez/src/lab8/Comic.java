@@ -48,7 +48,7 @@ public class Comic extends Articulo{
 
     @Override
     public String toString() {
-        return "Comic\n" + "Número de volumen=" + numeroVolumen + ", Descripción=" + descripcionComic + ", Estado de calidad=" + estadoCalidad;
+        return "Comic" + super.toString();
     }
     
 }

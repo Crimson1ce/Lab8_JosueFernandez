@@ -1,6 +1,8 @@
 package lab8;
 
-public class Gerente extends Persona{
+import java.io.Serializable;
+
+public class Gerente extends Persona implements Serializable{
     private String usuario;
     private String contraseña;
     private String cargo;

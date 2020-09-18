@@ -1,6 +1,8 @@
 package lab8;
 
-public class PersonaGeneral extends Persona{
+import java.io.Serializable;
+
+public class PersonaGeneral extends Persona implements Serializable{
     private String ocupacion;
     private String horario;
     private int semanasContratado;

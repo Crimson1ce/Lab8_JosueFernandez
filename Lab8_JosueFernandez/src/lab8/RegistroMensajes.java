@@ -8,14 +8,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class AdminPersonas {
+public class RegistroMensajes {
     
     private File archivo;
-    private ArrayList<Persona> personas;
+    private ArrayList<Mensaje> mensajes;
 
-    public AdminPersonas() {
-        archivo = new File("./Personas.per");
-        personas = new ArrayList<>();
+    public RegistroMensajes() {
+        archivo = new File("./Mensajes.men");
+        mensajes = new ArrayList<>();
     }
 
     public File getArchivo() {
@@ -26,20 +26,19 @@ public class AdminPersonas {
         this.archivo = archivo;
     }
 
-    public ArrayList<Persona> getPersonas() {
-        return personas;
+    public ArrayList<Mensaje> getMensajes() {
+        return mensajes;
     }
 
-    public void setPersonas(ArrayList<Persona> personas) {
-        this.personas = personas;
+    public void setMensajes(ArrayList<Mensaje> mensajes) {
+        this.mensajes = mensajes;
     }
 
     @Override
     public String toString() {
-        return "AdminPersonas{" + "archivo=" + archivo + ", personas=" + personas + '}';
+        return "RegistroMensajes{" + "archivo=" + archivo + ", mensajes=" + mensajes + '}';
     }
-    
-    public void cargarPersonas(){
+    public void cargarMensajes(){
         FileInputStream fi;
         ObjectInputStream oi;
         if (archivo.exists()) {
@@ -47,11 +46,11 @@ public class AdminPersonas {
                 
                 fi = new FileInputStream(archivo);
                 oi = new ObjectInputStream(fi);
-                Persona p;
+                Mensaje m;
                 
                 try {
-                    while( (p=(Persona)oi.readObject()) != null ){
-                        personas.add(p);
+                    while( (m=(Mensaje)oi.readObject()) != null ){
+                        mensajes.add(m);
                     }
                 } catch (EOFException e) {
                 } catch (Exception e){
@@ -65,15 +64,15 @@ public class AdminPersonas {
         }
     }
     
-    public void escribirPersonas(){
+    public void escribirMensajes(){
         FileOutputStream fo;
         ObjectOutputStream oo;
         try {
             fo = new FileOutputStream(archivo, false);
             oo = new ObjectOutputStream(fo);
             
-            for (Persona persona : personas) {
-                oo.writeObject(persona);
+            for (Mensaje mensaje : mensajes) {
+                oo.writeObject(mensaje);
             }
             
             oo.close();

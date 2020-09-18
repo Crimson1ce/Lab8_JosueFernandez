@@ -14,20 +14,11 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         ap.cargarPersonas();
-        DefaultComboBoxModel pmodel = new DefaultComboBoxModel(ap.getPersonas().toArray());
-        cb_personas.setModel(pmodel);
-        cb_emisor.setModel(pmodel);
-        cb_receptor.setModel(pmodel);
-
-        DefaultComboBoxModel art_model = (DefaultComboBoxModel) cb_art.getModel();
-        art_model.addElement("Comic");
-        art_model.addElement("Juego");
-        art_model.addElement("Figura");
-        cb_art.setModel(art_model);
-        cb_art.setSelectedIndex(0);
-
-        jl_edicion.setVisible(false);
-        jl_garantia.setVisible(false);
+        cargarPersonasCB();
+        aa.cargarArticulos();
+        cargarArticulosCB();
+        rm.cargarMensajes();
+        cargarMensajes();
 
         this.setLocationRelativeTo(null);
     }
@@ -130,9 +121,12 @@ public class Main extends javax.swing.JFrame {
         jb_crearArt = new javax.swing.JButton();
         jb_modificarArt = new javax.swing.JButton();
         jb_eliminarArt = new javax.swing.JButton();
+        ff_garantía = new javax.swing.JFormattedTextField();
+        ff_edicion = new javax.swing.JFormattedTextField();
+        cb_listaArt = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jt_personas = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
@@ -143,7 +137,7 @@ public class Main extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jt_mensajes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,6 +179,7 @@ public class Main extends javax.swing.JFrame {
 
         rb_masculino.setBackground(new java.awt.Color(153, 153, 255));
         bg_sexo.add(rb_masculino);
+        rb_masculino.setSelected(true);
         rb_masculino.setText("Masculino");
 
         rb_femenino.setBackground(new java.awt.Color(153, 153, 255));
@@ -199,6 +194,7 @@ public class Main extends javax.swing.JFrame {
 
         rb_soltero.setBackground(new java.awt.Color(153, 153, 255));
         bg_estadoCivil.add(rb_soltero);
+        rb_soltero.setSelected(true);
         rb_soltero.setText("Soltero");
 
         rb_casado.setBackground(new java.awt.Color(153, 153, 255));
@@ -246,6 +242,7 @@ public class Main extends javax.swing.JFrame {
 
         rb_planta.setBackground(new java.awt.Color(153, 153, 255));
         bg_cargo.add(rb_planta);
+        rb_planta.setSelected(true);
         rb_planta.setText("Gerente de planta");
         rb_planta.setEnabled(false);
 
@@ -575,7 +572,7 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 131, -1, -1));
 
         ff_puntuacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jPanel2.add(ff_puntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 126, 147, -1));
+        jPanel2.add(ff_puntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 147, -1));
 
         cb_registrador.setBackground(new java.awt.Color(255, 0, 51));
         cb_registrador.setModel(cb_personas.getModel());
@@ -592,52 +589,58 @@ public class Main extends javax.swing.JFrame {
 
         jl_garantia.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jl_garantia.setText("Tiempo de garantía:");
-        jPanel2.add(jl_garantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jPanel2.add(jl_garantia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 130, -1));
 
         jl_edicion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jl_edicion.setText("No. de Edición:");
-        jPanel2.add(jl_edicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+        jPanel2.add(jl_edicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jl_volumen.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jl_volumen.setText("No. de Volumen:");
         jPanel2.add(jl_volumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         ff_volumen.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        jPanel2.add(ff_volumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 198, 96, -1));
+        ff_volumen.setEnabled(false);
+        jPanel2.add(ff_volumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 96, -1));
 
         ta_descripsionComic.setColumns(20);
         ta_descripsionComic.setRows(5);
         jScrollPane2.setViewportView(ta_descripsionComic);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 200, 40));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 210, 120));
 
         jl_casaElaboracion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jl_casaElaboracion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jl_casaElaboracion.setText("Casa de elaboración:");
-        jPanel2.add(jl_casaElaboracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
-        jPanel2.add(tf_casaElaboracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 130, -1));
+        jPanel2.add(jl_casaElaboracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, -1, -1));
+
+        tf_casaElaboracion.setEnabled(false);
+        jPanel2.add(tf_casaElaboracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 150, -1));
 
         jl_desc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jl_desc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jl_desc.setText("Descripción:");
-        jPanel2.add(jl_desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
-        jPanel2.add(tf_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 130, -1));
+        jPanel2.add(jl_desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 160, -1));
+
+        tf_pais.setEnabled(false);
+        jPanel2.add(tf_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 150, -1));
 
         jl_pais.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jl_pais.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jl_pais.setText("País donde se realizó:");
-        jPanel2.add(jl_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
+        jPanel2.add(jl_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
 
         ta_instrucciones.setColumns(20);
         ta_instrucciones.setRows(5);
+        ta_instrucciones.setEnabled(false);
         jScrollPane3.setViewportView(ta_instrucciones);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 202, 170, 80));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 280, 150));
 
         jl_instrucciones.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jl_instrucciones.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jl_instrucciones.setText("Instrucciones de armado:");
-        jPanel2.add(jl_instrucciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, -1, -1));
+        jPanel2.add(jl_instrucciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
 
         jb_crearArt.setBackground(new java.awt.Color(255, 153, 51));
         jb_crearArt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -672,11 +675,26 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel2.add(jb_eliminarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 100, -1));
 
+        ff_garantía.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jPanel2.add(ff_garantía, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 96, -1));
+
+        ff_edicion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        ff_edicion.setEnabled(false);
+        jPanel2.add(ff_edicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 96, -1));
+
+        cb_listaArt.setBackground(new java.awt.Color(0, 0, 255));
+        cb_listaArt.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_listaArtItemStateChanged(evt);
+            }
+        });
+        jPanel2.add(cb_listaArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 132, 20));
+
         jTabbedPane1.addTab("Artículos", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 51));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jt_personas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -685,14 +703,21 @@ public class Main extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(jt_personas);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -713,12 +738,13 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Listado", jPanel3);
 
+        jPanel4.setBackground(new java.awt.Color(0, 204, 51));
+
         text.setColumns(20);
         text.setRows(5);
         jScrollPane5.setViewportView(text);
 
         cb_emisor.setBackground(new java.awt.Color(255, 0, 51));
-        cb_emisor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         cb_emisor.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_emisorItemStateChanged(evt);
@@ -726,7 +752,6 @@ public class Main extends javax.swing.JFrame {
         });
 
         cb_receptor.setBackground(new java.awt.Color(255, 0, 51));
-        cb_receptor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         cb_receptor.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_receptorItemStateChanged(evt);
@@ -777,16 +802,18 @@ public class Main extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cb_receptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cb_emisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                    .addComponent(cb_emisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(bt_enviarMensaje)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addGap(95, 95, 95))
         );
 
         jTabbedPane1.addTab("Mensajería", jPanel4);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel5.setBackground(new java.awt.Color(102, 255, 255));
+
+        jt_mensajes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -802,7 +829,7 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(jTable2);
+        jScrollPane6.setViewportView(jt_mensajes);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -916,6 +943,7 @@ public class Main extends javax.swing.JFrame {
                 }
                 ap.escribirPersonas();
                 limpiarCampos();
+                cargarPersonasCB();
 
             } catch (Exception e) {
                 estadoOperacion(false);
@@ -981,6 +1009,7 @@ public class Main extends javax.swing.JFrame {
                     m.removeElementAt(cb_personas.getSelectedIndex());
                     estadoOperacion(true);
                     ap.escribirPersonas();
+                    cargarPersonasCB();
                 }
             } catch (Exception e) {
                 estadoOperacion(false);
@@ -1017,7 +1046,7 @@ public class Main extends javax.swing.JFrame {
                     estadoCivil = "Viudo";
                 }
 
-                if (ap.getPersonas().get(cb_personas.getSelectedIndex() - 1) instanceof Gerente) {
+                if (ap.getPersonas().get(cb_personas.getSelectedIndex()) instanceof Gerente) {
                     String usuario = tf_usuario.getText();
                     Gerente g = ((Gerente) cb_personas.getSelectedItem());
                     g.setUsuario(usuario);
@@ -1031,11 +1060,11 @@ public class Main extends javax.swing.JFrame {
                     g.setEdad(edad);
 
                     estadoOperacion(true);
-                } else if (ap.getPersonas().get(cb_personas.getSelectedIndex() - 1) instanceof PersonaGeneral) {
+                } else if (ap.getPersonas().get(cb_personas.getSelectedIndex()) instanceof PersonaGeneral) {
 
                     Float sueldo = Float.parseFloat(ff_sueldo.getText());
 
-                    PersonaGeneral g = ((PersonaGeneral) cb_personas.getSelectedItem());
+                    PersonaGeneral g = ((PersonaGeneral) ap.getPersonas().get(cb_personas.getSelectedIndex()));
                     g.setSueldo(sueldo);
 
                     g.setNombrePersona(nombrePersona);
@@ -1049,6 +1078,7 @@ public class Main extends javax.swing.JFrame {
                     estadoOperacion(true);
                 }
                 ap.escribirPersonas();
+                cargarPersonasCB();
             } catch (Exception e) {
                 estadoOperacion(false);
             }
@@ -1143,7 +1173,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_registradorItemStateChanged
 
     private void jb_crearArtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearArtActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jb_crearArtActionPerformed
 
     private void jb_modificarArtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_modificarArtActionPerformed
@@ -1214,18 +1244,22 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_artItemStateChanged
 
     private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
-        DefaultTableModel t = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel t = (DefaultTableModel) jt_personas.getModel();
+
+        for (int i = t.getRowCount() - 1; i >= 0; i--) {
+            t.removeRow(i);
+        }
 
         for (Persona p : ap.getPersonas()) {
 
             String s = (p instanceof Gerente) ? "Gerente" : "Persona General";
 
-            String[] so = new String[]{
-                p.getNombrePersona(),
+            Object[] so = new Object[]{
+                p,
                 s
             };
             t.addRow(so);
-            jTable1.setModel(t);
+            jt_personas.setModel(t);
 
         }
     }//GEN-LAST:event_jTabbedPane1FocusGained
@@ -1236,44 +1270,51 @@ public class Main extends javax.swing.JFrame {
 
     private void cb_receptorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_receptorItemStateChanged
         if (evt.getStateChange() == 2) {
-            if (cb_emisor.getSelectedIndex() == cb_receptor.getSelectedIndex()) {
+            if (cb_emisor.getSelectedIndex() == cb_receptor.getSelectedIndex() && cb_emisor.getSelectedIndex() != -1) {
                 cb_receptor.setSelectedIndex(-1);
             }
         }
     }//GEN-LAST:event_cb_receptorItemStateChanged
 
     private void bt_enviarMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_enviarMensajeActionPerformed
-        if (entrar()) {
-            try {
-                if (cb_emisor.getSelectedIndex() != -1 && cb_receptor.getSelectedIndex() != -1) {
 
-                    Mensaje m = new Mensaje((Persona) cb_emisor.getSelectedItem(), (Persona) cb_receptor.getSelectedItem(), text.getText());
+        try {
+            if (cb_emisor.getSelectedIndex() != -1 && cb_receptor.getSelectedIndex() != -1) {
 
-                    DefaultComboBoxModel mEmisor = (DefaultComboBoxModel) cb_emisor.getModel();
-                    DefaultComboBoxModel mReceptor = (DefaultComboBoxModel) cb_receptor.getModel();
-                    
-                    ((Persona) mEmisor.getElementAt(cb_emisor.getSelectedIndex())).getMensajesEnviados().add(m);
-                    ((Persona) mReceptor.getElementAt(cb_emisor.getSelectedIndex())).getMensajesRecibidos().add(m);
+                Mensaje m = new Mensaje((Persona) cb_emisor.getSelectedItem(), (Persona) cb_receptor.getSelectedItem(), text.getText());
 
-                    DefaultTableModel t = (DefaultTableModel) jTable2.getModel();
-                    Object[] r = new Object[]{
-                        (Persona) cb_emisor.getSelectedItem(),
-                        (Persona) cb_receptor.getSelectedItem(),
-                        m
-                    };
+                DefaultComboBoxModel mEmisor = (DefaultComboBoxModel) cb_emisor.getModel();
+                DefaultComboBoxModel mReceptor = (DefaultComboBoxModel) cb_receptor.getModel();
 
-                    t.addRow(r);
-                    jTable2.setModel(t);
-                    
-                    estadoOperacion(true);
-                } else {
-                    estadoOperacion(false);
-                }
-            } catch (Exception e) {
+                ((Persona) mEmisor.getElementAt(cb_emisor.getSelectedIndex())).getMensajesEnviados().add(m);
+                ((Persona) mReceptor.getElementAt(cb_emisor.getSelectedIndex())).getMensajesRecibidos().add(m);
+
+                DefaultTableModel t = (DefaultTableModel) jt_mensajes.getModel();
+                Object[] r = new Object[]{
+                    (Persona) cb_emisor.getSelectedItem(),
+                    (Persona) cb_receptor.getSelectedItem(),
+                    m
+                };
+
+                t.addRow(r);
+                jt_mensajes.setModel(t);
+
+                estadoOperacion(true);
+
+                cb_emisor.setSelectedIndex(-1);
+                cb_receptor.setSelectedIndex(-1);
+                text.setText("");
+            } else {
                 estadoOperacion(false);
             }
+        } catch (Exception e) {
+            estadoOperacion(false);
         }
     }//GEN-LAST:event_bt_enviarMensajeActionPerformed
+
+    private void cb_listaArtItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_listaArtItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_listaArtItemStateChanged
 
     private void mostrarDatosPersona(Persona p) {
 
@@ -1430,12 +1471,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton bt_enviarMensaje;
     private javax.swing.JComboBox<String> cb_art;
     private javax.swing.JComboBox<String> cb_emisor;
+    private javax.swing.JComboBox<String> cb_listaArt;
     private javax.swing.JComboBox<String> cb_personas;
     private javax.swing.JComboBox<String> cb_receptor;
     private javax.swing.JComboBox<String> cb_registrador;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JFormattedTextField ff_altura;
     private javax.swing.JFormattedTextField ff_edad;
+    private javax.swing.JFormattedTextField ff_edicion;
+    private javax.swing.JFormattedTextField ff_garantía;
     private javax.swing.JFormattedTextField ff_identificacion;
     private javax.swing.JFormattedTextField ff_peso;
     private javax.swing.JFormattedTextField ff_puntuacion;
@@ -1475,8 +1519,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JButton jb_color;
     private javax.swing.JButton jb_crear;
     private javax.swing.JButton jb_crearArt;
@@ -1504,6 +1546,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jl_tiempo;
     private javax.swing.JLabel jl_usuario;
     private javax.swing.JLabel jl_volumen;
+    private javax.swing.JTable jt_mensajes;
+    private javax.swing.JTable jt_personas;
     private javax.swing.JPanel panel;
     private javax.swing.JRadioButton rb_casado;
     private javax.swing.JRadioButton rb_divorciado;
@@ -1530,4 +1574,42 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     AdminPersonas ap = new AdminPersonas();
+    AdminArticulos aa = new AdminArticulos();
+    RegistroMensajes rm = new RegistroMensajes();
+
+    private void cargarPersonasCB() {
+        cb_personas.setModel(new DefaultComboBoxModel(ap.getPersonas().toArray()));
+        cb_emisor.setModel(new DefaultComboBoxModel(ap.getPersonas().toArray()));
+        cb_receptor.setModel(new DefaultComboBoxModel(ap.getPersonas().toArray()));
+        cb_registrador.setModel(new DefaultComboBoxModel(ap.getPersonas().toArray()));
+        cb_personas.setSelectedIndex(-1);
+        cb_emisor.setSelectedIndex(-1);
+        cb_receptor.setSelectedIndex(-1);
+        cb_registrador.setSelectedIndex(-1);
+    }
+    
+    private void cargarArticulosCB(){
+        cb_listaArt.setModel(new DefaultComboBoxModel(aa.getArticulos().toArray()));
+        cb_listaArt.setSelectedIndex(-1);
+    }
+    
+    private void cargarMensajes(){
+        
+        DefaultTableModel model = (DefaultTableModel) jt_mensajes.getModel();
+        
+        for (int i = model.getRowCount() - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+        
+        for (Mensaje mensaje : rm.getMensajes()) {
+            
+            Object[] row = new Object[]{
+                mensaje.getEmisor(),
+                mensaje.getReceptor(),
+                mensaje
+            };
+            
+        }
+        
+    }
 }
