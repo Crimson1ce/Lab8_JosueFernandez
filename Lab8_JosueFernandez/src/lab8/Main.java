@@ -1522,7 +1522,7 @@ public class Main extends javax.swing.JFrame {
             if (model.getElementAt(cb_listaArt.getSelectedIndex()) instanceof Comic) {
 
                 Comic g = (Comic) cb_listaArt.getSelectedItem();
-//                mostrarDatosPersona(g);
+                mostrarDatos(g);
 
                 //Figura
                 ta_descripcionComic.setEnabled(false);
@@ -1543,7 +1543,53 @@ public class Main extends javax.swing.JFrame {
                 sl_estado.setEnabled(true);
                 sl_estado.setValue(g.getEstadoCalidad());
                 
-            } else {
+            } else if (model.getElementAt(cb_listaArt.getSelectedIndex()) instanceof Juego){
+
+                Juego g = (Juego) cb_listaArt.getSelectedItem();
+                mostrarDatos(g);
+
+                //Figura
+                ta_descripcionComic.setEnabled(false);
+                ta_instrucciones.setEnabled(false);
+                ff_garantía.setEnabled(false);
+
+                //Comic
+                ff_volumen.setEnabled(false);
+                ta_descripcionComic.setEnabled(false);
+                sl_estado.setEnabled(false);
+
+                //Juego
+                ff_edicion.setEnabled(true);
+                tf_casaElaboracion.setEnabled(true);
+                tf_pais.setEnabled(true);
+                
+                ff_edicion.setText(g.getNumeroEdicion() + "");
+                tf_casaElaboracion.setText(g.getCasaDeElaboracion());
+                tf_pais.setText(g.getPaisDondeSeHizo());
+
+            } else if (model.getElementAt(cb_listaArt.getSelectedIndex()) instanceof Figura){
+                
+                Figura g = (Figura) cb_listaArt.getSelectedItem();
+                mostrarDatos(g);
+                
+                //Comic
+                ff_volumen.setEnabled(false);
+                ta_descripcionComic.setEnabled(false);
+                sl_estado.setEnabled(false);
+
+                //Juego
+                ff_edicion.setEnabled(false);
+                tf_casaElaboracion.setEnabled(false);
+                tf_pais.setEnabled(false);
+                
+                //Figura
+                ta_descripcionComic.setEnabled(true);
+                ta_instrucciones.setEnabled(true);
+                ff_garantía.setEnabled(true);
+
+                ta_descripcionComic.setText(g.getDescripcionFigura());
+                ta_instrucciones.setText(g.getInstruccionesDeArmado());
+                ff_garantía.setText(g.getTiempoDeGarantia() + "");
                 
             }
         }
@@ -1879,5 +1925,19 @@ public class Main extends javax.swing.JFrame {
         tf_pais.setText("");
         
         cb_listaArt.setSelectedIndex(-1);
+    }
+
+    private void mostrarDatos(Articulo g) {
+        tf_titulo.setText(g.getTitulo());
+        jb_color.setBackground(g.getColor());
+        ta_descripcionArt.setText(g.getDescripcionArticulo());
+        tf_editorial.setText(g.getEditorial());
+        ff_tamano.setText(g.getTamaño() + "");
+        sp_puntuacion.setValue(g.getPuntuacion());
+        try {
+            cb_registrador.setSelectedItem(g.getPersonaRegistro());
+        } catch (Exception e) {
+        }
+        
     }
 }
