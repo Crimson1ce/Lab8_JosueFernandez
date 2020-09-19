@@ -1240,7 +1240,7 @@ public class Main extends javax.swing.JFrame {
                     registrador = (Persona) ((DefaultComboBoxModel)cb_registrador.getModel()).getElementAt(cb_registrador.getSelectedIndex());
                 }
                 
-                if (cb_listaArt.getSelectedIndex() == 0) {
+                if (cb_art.getSelectedIndex() == 0) {
 
                     String descripComic = ta_descripcionComic.getText();
                     int estado = sl_estado.getValue();
@@ -1253,7 +1253,7 @@ public class Main extends javax.swing.JFrame {
                     m.addElement(a);
 
                     estadoOperacion(true);
-                } else if (cb_listaArt.getSelectedIndex() == 1) {
+                } else if (cb_art.getSelectedIndex() == 1) {
                     String casaElaboracion, pais;
                     int edicion = Integer.parseInt(ff_edicion.getText());
 
@@ -1268,7 +1268,7 @@ public class Main extends javax.swing.JFrame {
                     m.addElement(a);
 
                     estadoOperacion(true);
-                } else if (cb_listaArt.getSelectedIndex() == 2) {
+                } else if (cb_art.getSelectedIndex() == 2) {
                     String descripFigura = ta_descripcionComic.getText();
                     String instrucciones = ta_instrucciones.getText();
                     int tiempo = Integer.parseInt(ff_garantía.getText());
@@ -1281,7 +1281,7 @@ public class Main extends javax.swing.JFrame {
                 }
                 aa.escribirArticulos();
                 limpiarCampos2();
-                cargarPersonasCB();
+                cargarArticulosCB();
 
             } catch (Exception e) {
                 estadoOperacion(false);
@@ -1513,7 +1513,40 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_enviarMensajeActionPerformed
 
     private void cb_listaArtItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_listaArtItemStateChanged
-        // TODO add your handling code here:
+        
+        //Articulo a = ()
+        
+        if (evt.getStateChange() == 2 && cb_listaArt.getSelectedIndex() >= 0) {
+
+            DefaultComboBoxModel model = (DefaultComboBoxModel) cb_listaArt.getModel();
+            if (model.getElementAt(cb_listaArt.getSelectedIndex()) instanceof Comic) {
+
+                Comic g = (Comic) cb_listaArt.getSelectedItem();
+//                mostrarDatosPersona(g);
+
+                //Figura
+                ta_descripcionComic.setEnabled(false);
+                ta_instrucciones.setEnabled(false);
+                ff_garantía.setEnabled(false);
+
+                //Juego
+                ff_edicion.setEnabled(false);
+                tf_casaElaboracion.setEnabled(false);
+                tf_pais.setEnabled(false);
+
+                ff_volumen.setEnabled(true);
+                ff_volumen.setText(g.getNumeroVolumen() + "");
+
+                ta_descripcionComic.setEnabled(true);
+                ta_descripcionComic.setText(g.getDescripcionComic());
+
+                sl_estado.setEnabled(true);
+                sl_estado.setValue(g.getEstadoCalidad());
+                
+            } else {
+                
+            }
+        }
     }//GEN-LAST:event_cb_listaArtItemStateChanged
 
     private void jb_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_limpiarActionPerformed

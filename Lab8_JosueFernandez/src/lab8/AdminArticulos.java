@@ -52,6 +52,7 @@ public class AdminArticulos {
                 try {
                     while( (a=(Articulo)oi.readObject()) != null ){
                         articulos.add(a);
+                        System.out.println("hay uno");
                     }
                 } catch (EOFException e) {
                 } catch (Exception e){
@@ -61,6 +62,7 @@ public class AdminArticulos {
                 oi.close();
                 fi.close();
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -80,6 +82,7 @@ public class AdminArticulos {
             fo.close();
             
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     
