@@ -1,6 +1,8 @@
 package lab8;
 
-public class Mensaje {
+import java.io.Serializable;
+
+public class Mensaje implements Serializable{
     
     private Persona emisor;
     private Persona receptor;

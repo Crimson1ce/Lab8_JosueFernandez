@@ -1,8 +1,9 @@
 package lab8;
 
 import java.awt.Color;
+import java.io.Serializable;
 
-public abstract class Articulo {
+public abstract class Articulo implements Serializable{
     private String titulo;
     private Color color;
     private String descripcionArticulo;
@@ -72,7 +73,7 @@ public abstract class Articulo {
     }
 
     public void setPuntuacion(float puntuacion) {
-        if (puntuacion>=0.0 && puntuacion<=100.0) {
+        if (puntuacion>=1.0 && puntuacion<=100.0) {
             this.puntuacion = puntuacion;
         }
         

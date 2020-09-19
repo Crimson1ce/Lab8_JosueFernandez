@@ -1,5 +1,6 @@
 package lab8;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
@@ -82,6 +83,7 @@ public class Main extends javax.swing.JFrame {
         jl_modificableU = new javax.swing.JLabel();
         jl_modificableS = new javax.swing.JLabel();
         jl_semanas1 = new javax.swing.JLabel();
+        jb_limpiar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         cb_art = new javax.swing.JComboBox<>();
         jb_color = new javax.swing.JButton();
@@ -97,11 +99,10 @@ public class Main extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         ff_tamano = new javax.swing.JFormattedTextField();
         jLabel16 = new javax.swing.JLabel();
-        s_estado = new javax.swing.JSlider();
+        sl_estado = new javax.swing.JSlider();
         jl_numeros = new javax.swing.JLabel();
         jl_estado = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        ff_puntuacion = new javax.swing.JFormattedTextField();
         cb_registrador = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
         jl_garantia = new javax.swing.JLabel();
@@ -109,7 +110,7 @@ public class Main extends javax.swing.JFrame {
         jl_volumen = new javax.swing.JLabel();
         ff_volumen = new javax.swing.JFormattedTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        ta_descripsionComic = new javax.swing.JTextArea();
+        ta_descripcionComic = new javax.swing.JTextArea();
         jl_casaElaboracion = new javax.swing.JLabel();
         tf_casaElaboracion = new javax.swing.JTextField();
         jl_desc = new javax.swing.JLabel();
@@ -124,6 +125,10 @@ public class Main extends javax.swing.JFrame {
         ff_garantía = new javax.swing.JFormattedTextField();
         ff_edicion = new javax.swing.JFormattedTextField();
         cb_listaArt = new javax.swing.JComboBox<>();
+        sp_puntuacion = new javax.swing.JSpinner();
+        jb_limpiar1 = new javax.swing.JButton();
+        jl_modificableU1 = new javax.swing.JLabel();
+        jl_modificableU2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jt_personas = new javax.swing.JTable();
@@ -140,6 +145,7 @@ public class Main extends javax.swing.JFrame {
         jt_mensajes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         panel.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -294,7 +300,6 @@ public class Main extends javax.swing.JFrame {
         });
 
         cb_personas.setBackground(new java.awt.Color(255, 0, 51));
-        cb_personas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         cb_personas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cb_personasItemStateChanged(evt);
@@ -314,6 +319,16 @@ public class Main extends javax.swing.JFrame {
 
         jl_semanas1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jl_semanas1.setText("Lempiras");
+
+        jb_limpiar.setBackground(new java.awt.Color(255, 153, 51));
+        jb_limpiar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jb_limpiar.setText("LIMPIAR");
+        jb_limpiar.setBorderPainted(false);
+        jb_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_limpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -386,10 +401,12 @@ public class Main extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jb_modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jb_eliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(cb_personas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cb_personas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jb_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jb_modificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jb_eliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -483,7 +500,9 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(tf_contra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(rb_sucursal))
                     .addComponent(tf_usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jb_limpiar)
+                .addGap(62, 62, 62))
         );
 
         jTabbedPane1.addTab("Personas", jPanel1);
@@ -554,9 +573,9 @@ public class Main extends javax.swing.JFrame {
         jLabel16.setText("cm");
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 94, -1, -1));
 
-        s_estado.setMaximum(10);
-        s_estado.setMinimum(1);
-        jPanel2.add(s_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 148, -1, -1));
+        sl_estado.setMaximum(10);
+        sl_estado.setMinimum(1);
+        jPanel2.add(sl_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 148, -1, -1));
 
         jl_numeros.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jl_numeros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -571,9 +590,6 @@ public class Main extends javax.swing.JFrame {
         jLabel19.setText("Puntuación:");
         jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 131, -1, -1));
 
-        ff_puntuacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jPanel2.add(ff_puntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 147, -1));
-
         cb_registrador.setBackground(new java.awt.Color(255, 0, 51));
         cb_registrador.setModel(cb_personas.getModel());
         cb_registrador.addItemListener(new java.awt.event.ItemListener() {
@@ -581,11 +597,11 @@ public class Main extends javax.swing.JFrame {
                 cb_registradorItemStateChanged(evt);
             }
         });
-        jPanel2.add(cb_registrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 152, 147, -1));
+        jPanel2.add(cb_registrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 147, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel20.setText("Registrado por:");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 157, -1, -1));
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
 
         jl_garantia.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jl_garantia.setText("Tiempo de garantía:");
@@ -600,12 +616,11 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(jl_volumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         ff_volumen.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        ff_volumen.setEnabled(false);
         jPanel2.add(ff_volumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 96, -1));
 
-        ta_descripsionComic.setColumns(20);
-        ta_descripsionComic.setRows(5);
-        jScrollPane2.setViewportView(ta_descripsionComic);
+        ta_descripcionComic.setColumns(20);
+        ta_descripcionComic.setRows(5);
+        jScrollPane2.setViewportView(ta_descripcionComic);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 210, 120));
 
@@ -615,12 +630,12 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(jl_casaElaboracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, -1, -1));
 
         tf_casaElaboracion.setEnabled(false);
-        jPanel2.add(tf_casaElaboracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 150, -1));
+        jPanel2.add(tf_casaElaboracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 150, -1));
 
         jl_desc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jl_desc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jl_desc.setText("Descripción:");
-        jPanel2.add(jl_desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 160, -1));
+        jPanel2.add(jl_desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 90, -1));
 
         tf_pais.setEnabled(false);
         jPanel2.add(tf_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 150, -1));
@@ -676,6 +691,7 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(jb_eliminarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 100, -1));
 
         ff_garantía.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        ff_garantía.setEnabled(false);
         jPanel2.add(ff_garantía, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 96, -1));
 
         ff_edicion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
@@ -688,7 +704,29 @@ public class Main extends javax.swing.JFrame {
                 cb_listaArtItemStateChanged(evt);
             }
         });
-        jPanel2.add(cb_listaArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 132, 20));
+        jPanel2.add(cb_listaArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, 132, 20));
+
+        sp_puntuacion.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(100.0f), Float.valueOf(1.0f), Float.valueOf(100.0f), Float.valueOf(1.0f)));
+        jPanel2.add(sp_puntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 150, -1));
+
+        jb_limpiar1.setBackground(new java.awt.Color(255, 153, 51));
+        jb_limpiar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jb_limpiar1.setText("LIMPIAR");
+        jb_limpiar1.setBorderPainted(false);
+        jb_limpiar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_limpiar1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jb_limpiar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 340, -1, -1));
+
+        jl_modificableU1.setForeground(new java.awt.Color(255, 0, 0));
+        jl_modificableU1.setText("*modificable");
+        jPanel2.add(jl_modificableU1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
+
+        jl_modificableU2.setForeground(new java.awt.Color(255, 0, 0));
+        jl_modificableU2.setText("*modificable");
+        jPanel2.add(jl_modificableU2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, -1, -1));
 
         jTabbedPane1.addTab("Artículos", jPanel2);
 
@@ -854,16 +892,15 @@ public class Main extends javax.swing.JFrame {
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 63, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -874,9 +911,7 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -1003,8 +1038,8 @@ public class Main extends javax.swing.JFrame {
     private void jb_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_eliminarActionPerformed
         if (entrar()) {
             try {
-                if (cb_personas.getSelectedIndex() > 0) {
-                    ap.getPersonas().remove(cb_personas.getSelectedIndex() - 1);
+                if (cb_personas.getSelectedIndex() >= 0) {
+                    ap.getPersonas().remove(cb_personas.getSelectedIndex());
                     DefaultComboBoxModel m = (DefaultComboBoxModel) cb_personas.getModel();
                     m.removeElementAt(cb_personas.getSelectedIndex());
                     estadoOperacion(true);
@@ -1048,7 +1083,7 @@ public class Main extends javax.swing.JFrame {
 
                 if (ap.getPersonas().get(cb_personas.getSelectedIndex()) instanceof Gerente) {
                     String usuario = tf_usuario.getText();
-                    Gerente g = ((Gerente) cb_personas.getSelectedItem());
+                    Gerente g = ((Gerente) ap.getPersonas().get(cb_personas.getSelectedIndex()));//((Gerente) cb_personas.getSelectedItem());
                     g.setUsuario(usuario);
 
                     g.setNombrePersona(nombrePersona);
@@ -1087,9 +1122,10 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_modificarActionPerformed
 
     private void cb_personasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_personasItemStateChanged
-        if (evt.getStateChange() == 2 && cb_personas.getSelectedIndex() > 0) {
+        if (evt.getStateChange() == 2 && cb_personas.getSelectedIndex() >= 0) {
 
-            if (cb_personas.getSelectedItem() instanceof Gerente) {
+            DefaultComboBoxModel model = (DefaultComboBoxModel) cb_personas.getModel();
+            if (model.getElementAt(cb_personas.getSelectedIndex()) instanceof Gerente) {
 
                 Gerente g = (Gerente) cb_personas.getSelectedItem();
                 mostrarDatosPersona(g);
@@ -1125,6 +1161,14 @@ public class Main extends javax.swing.JFrame {
                     rb_planta.setSelected(false);
                     rb_sucursal.setSelected(true);
                 }
+
+                tf_ocupacion.setText("");
+                tf_horario.setText("");
+                ff_tiempo.setText("");
+                ff_sueldo.setText("");
+
+                cb_tipo.setSelectedIndex(0);
+                
             } else {
                 PersonaGeneral p = (PersonaGeneral) cb_personas.getSelectedItem();
                 mostrarDatosPersona(p);
@@ -1156,6 +1200,11 @@ public class Main extends javax.swing.JFrame {
 
                 ff_sueldo.setEnabled(true);
                 ff_sueldo.setText(p.getSueldo() + "");
+
+                tf_usuario.setText("");
+                tf_contra.setText("");
+                
+                cb_tipo.setSelectedIndex(1);
             }
         }
     }//GEN-LAST:event_cb_personasItemStateChanged
@@ -1173,74 +1222,219 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_registradorItemStateChanged
 
     private void jb_crearArtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearArtActionPerformed
-        
+        if (entrar()) {
+            String titulo, descripcion, editorial;
+            Color color;
+            int tamaño;
+            float puntuacion;
+            Persona registrador = null;
+
+            try {
+                titulo = tf_titulo.getText();
+                descripcion = ta_descripcionArt.getText();
+                editorial = tf_editorial.getText();
+                color = jb_color.getBackground();
+                tamaño = Integer.parseInt(ff_tamano.getValue().toString());
+                puntuacion = Float.parseFloat(sp_puntuacion.getValue().toString());
+                if (cb_registrador.getSelectedIndex()>=0) {
+                    registrador = (Persona) ((DefaultComboBoxModel)cb_registrador.getModel()).getElementAt(cb_registrador.getSelectedIndex());
+                }
+                
+                if (cb_listaArt.getSelectedIndex() == 0) {
+
+                    String descripComic = ta_descripcionComic.getText();
+                    int estado = sl_estado.getValue();
+                    int volumen = Integer.parseInt(ff_volumen.getText());
+                    
+                    Articulo a = 
+                            new Comic(volumen, descripComic, estado, titulo, color, descripcion, editorial, tamaño, puntuacion, registrador);
+                    aa.getArticulos().add(a);
+                    DefaultComboBoxModel m = (DefaultComboBoxModel) cb_listaArt.getModel();
+                    m.addElement(a);
+
+                    estadoOperacion(true);
+                } else if (cb_listaArt.getSelectedIndex() == 1) {
+                    String casaElaboracion, pais;
+                    int edicion = Integer.parseInt(ff_edicion.getText());
+
+                    casaElaboracion = tf_casaElaboracion.getText();
+                    pais = tf_pais.getText();
+                    
+                    Articulo a = 
+                            new Juego(edicion, casaElaboracion, pais, titulo, color, descripcion, editorial, tamaño, puntuacion, registrador);
+
+                    aa.getArticulos().add(a);
+                    DefaultComboBoxModel m = (DefaultComboBoxModel) cb_listaArt.getModel();
+                    m.addElement(a);
+
+                    estadoOperacion(true);
+                } else if (cb_listaArt.getSelectedIndex() == 2) {
+                    String descripFigura = ta_descripcionComic.getText();
+                    String instrucciones = ta_instrucciones.getText();
+                    int tiempo = Integer.parseInt(ff_garantía.getText());
+                    
+                    Articulo a = 
+                            new Figura(descripFigura, instrucciones, tiempo, titulo, color, descripcion, editorial, tamaño, puntuacion, registrador);
+                    aa.getArticulos().add(a);
+                    DefaultComboBoxModel m = (DefaultComboBoxModel) cb_listaArt.getModel();
+                    m.addElement(a);
+                }
+                aa.escribirArticulos();
+                limpiarCampos2();
+                cargarPersonasCB();
+
+            } catch (Exception e) {
+                estadoOperacion(false);
+            }
+
+        }
+
     }//GEN-LAST:event_jb_crearArtActionPerformed
 
     private void jb_modificarArtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_modificarArtActionPerformed
-        // TODO add your handling code here:
+        if (entrar()) {
+            String titulo, descripcion, editorial;
+            Color color;
+            int tamaño;
+            float puntuacion;
+            Persona registrador = null;
+
+            try {
+                titulo = tf_titulo.getText();
+                descripcion = ta_descripcionArt.getText();
+                editorial = tf_editorial.getText();
+                color = jb_color.getBackground();
+                tamaño = Integer.parseInt(ff_tamano.getValue().toString());
+                puntuacion = Float.parseFloat(sp_puntuacion.getValue().toString());
+                if (cb_registrador.getSelectedIndex()>=0) {
+                    registrador = (Persona) ((DefaultComboBoxModel)cb_registrador.getModel()).getElementAt(cb_registrador.getSelectedIndex());
+                }
+
+                if (aa.getArticulos().get(cb_listaArt.getSelectedIndex()) instanceof Comic) {
+                    String decripComic = ta_descripcionComic.getText();
+                    
+                    Comic c = ((Comic) aa.getArticulos().get(cb_listaArt.getSelectedIndex()));
+                    c.setDescripcionComic(decripComic);
+                    
+                    c.setTitulo(titulo);
+                    c.setDescripcionArticulo(descripcion);
+                    c.setEditorial(editorial);
+                    c.setColor(color);
+                    c.setTamaño(tamaño);
+                    c.setPuntuacion(puntuacion);
+
+                    estadoOperacion(true);
+                } else if (aa.getArticulos().get(cb_listaArt.getSelectedIndex()) instanceof Juego) {
+
+                    String pais = tf_pais.getText();
+                    
+                    Juego c = ((Juego) aa.getArticulos().get(cb_listaArt.getSelectedIndex()));
+                    c.setPaisDondeSeHizo(pais);
+                    
+                    c.setTitulo(titulo);
+                    c.setDescripcionArticulo(descripcion);
+                    c.setEditorial(editorial);
+                    c.setColor(color);
+                    c.setTamaño(tamaño);
+                    c.setPuntuacion(puntuacion);
+
+                    estadoOperacion(true);
+                } else if (aa.getArticulos().get(cb_listaArt.getSelectedIndex()) instanceof Figura){
+                    String decripFigura = ta_descripcionComic.getText();
+                    
+                    Figura c = ((Figura) aa.getArticulos().get(cb_listaArt.getSelectedIndex()));
+                    c.setDescripcionFigura(decripFigura);
+                    
+                    c.setTitulo(titulo);
+                    c.setDescripcionArticulo(descripcion);
+                    c.setEditorial(editorial);
+                    c.setColor(color);
+                    c.setTamaño(tamaño);
+                    c.setPuntuacion(puntuacion);
+
+                    estadoOperacion(true);
+                }
+                aa.escribirArticulos();
+                cargarArticulosCB();
+            } catch (Exception e) {
+                estadoOperacion(false);
+            }
+            limpiarCampos();
+        }
     }//GEN-LAST:event_jb_modificarArtActionPerformed
 
     private void jb_eliminarArtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_eliminarArtActionPerformed
-        // TODO add your handling code here:
+        if (entrar()) {
+            try {
+                if (cb_listaArt.getSelectedIndex() >= 0) {
+                    aa.getArticulos().remove(cb_listaArt.getSelectedIndex());
+                    DefaultComboBoxModel m = (DefaultComboBoxModel) cb_listaArt.getModel();
+                    m.removeElementAt(cb_listaArt.getSelectedIndex());
+                    estadoOperacion(true);
+                    aa.escribirArticulos();
+                    cargarArticulosCB();
+                }
+            } catch (Exception e) {
+                estadoOperacion(false);
+            }
+        }
     }//GEN-LAST:event_jb_eliminarArtActionPerformed
 
     private void cb_artItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_artItemStateChanged
-        if (evt.getStateChange() == 2) {
-            if (cb_tipo.getSelectedIndex() == 0) {
+        //if (evt.getStateChange() == 2) {
+        if (cb_art.getSelectedIndex() == 0) {
 
-                jl_estado.setVisible(true);
-                s_estado.setVisible(true);
-                jl_desc.setVisible(true);
-                ta_descripsionComic.setVisible(true);
-                jl_volumen.setVisible(true);
+            //Juego
+            ff_edicion.setEnabled(false);
+            tf_casaElaboracion.setEnabled(false);
+            tf_pais.setEnabled(false);
 
-                jl_edicion.setVisible(false);
-                jl_casaElaboracion.setVisible(false);
-                tf_casaElaboracion.setVisible(false);
-                jl_pais.setVisible(false);
-                tf_pais.setVisible(false);
+            //Figura
+//                ta_descripsionComic.setEnabled(false);
+            ta_instrucciones.setEnabled(false);
+            ff_garantía.setEnabled(false);
 
-                jl_instrucciones.setVisible(false);
-                ta_instrucciones.setVisible(false);
-                jl_tiempo.setVisible(false);
+            //Comic
+            sl_estado.setEnabled(true);
+            ta_descripcionComic.setEnabled(true);
+            ff_volumen.setEnabled(true);
 
-            } else if (cb_tipo.getSelectedIndex() == 1) {
-                jl_estado.setVisible(false);
-                s_estado.setVisible(false);
-                jl_desc.setVisible(false);
-                ta_descripsionComic.setVisible(false);
-                jl_volumen.setVisible(false);
+        } else if (cb_art.getSelectedIndex() == 1) {
 
-                jl_edicion.setVisible(true);
-                jl_casaElaboracion.setVisible(true);
-                tf_casaElaboracion.setVisible(true);
-                jl_pais.setVisible(true);
-                tf_pais.setVisible(true);
+            //Figura
+//                ta_descripsionComic.setEnabled(false);
+            ta_instrucciones.setEnabled(false);
+            ff_garantía.setEnabled(false);
 
-                jl_instrucciones.setVisible(false);
-                ta_instrucciones.setVisible(false);
-                jl_tiempo.setVisible(false);
+            //Comic
+            sl_estado.setEnabled(false);
+            ta_descripcionComic.setEnabled(false);
+            ff_volumen.setEnabled(false);
 
-            } else {
+            //Juego
+            ff_edicion.setEnabled(true);
+            tf_casaElaboracion.setEnabled(true);
+            tf_pais.setEnabled(true);
 
-                jl_estado.setVisible(false);
-                s_estado.setVisible(false);
-                jl_desc.setVisible(false);
-                ta_descripsionComic.setVisible(false);
-                jl_volumen.setVisible(false);
+        } else {
 
-                jl_edicion.setVisible(false);
-                jl_casaElaboracion.setVisible(false);
-                tf_casaElaboracion.setVisible(false);
-                jl_pais.setVisible(false);
-                tf_pais.setVisible(false);
+            //Comic
+            sl_estado.setEnabled(false);
+//                ta_descripsionComic.setEnabled(false);
+            ff_volumen.setEnabled(false);
 
-                jl_instrucciones.setVisible(true);
-                ta_instrucciones.setVisible(true);
-                jl_tiempo.setVisible(true);
+            //Juego
+            ff_edicion.setEnabled(false);
+            tf_casaElaboracion.setEnabled(false);
+            tf_pais.setEnabled(false);
 
-            }
+            //Figura
+            ta_descripcionComic.setEnabled(true);
+            ta_instrucciones.setEnabled(true);
+            ff_garantía.setEnabled(true);
+
         }
+        //}
     }//GEN-LAST:event_cb_artItemStateChanged
 
     private void jTabbedPane1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane1FocusGained
@@ -1296,14 +1490,20 @@ public class Main extends javax.swing.JFrame {
                     m
                 };
 
+                //Agregamos la fila a la tabla
                 t.addRow(r);
                 jt_mensajes.setModel(t);
 
                 estadoOperacion(true);
 
+                //Lo agregamos al registro de mensajes (clase de binario)
+                rm.getMensajes().add(m);
+                rm.escribirMensajes();
+
                 cb_emisor.setSelectedIndex(-1);
                 cb_receptor.setSelectedIndex(-1);
                 text.setText("");
+
             } else {
                 estadoOperacion(false);
             }
@@ -1315,6 +1515,14 @@ public class Main extends javax.swing.JFrame {
     private void cb_listaArtItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_listaArtItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_listaArtItemStateChanged
+
+    private void jb_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_limpiarActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_jb_limpiarActionPerformed
+
+    private void jb_limpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_limpiar1ActionPerformed
+        limpiarCampos2();
+    }//GEN-LAST:event_jb_limpiar1ActionPerformed
 
     private void mostrarDatosPersona(Persona p) {
 
@@ -1462,6 +1670,7 @@ public class Main extends javax.swing.JFrame {
         tf_contra.setText("");
         rb_planta.setSelected(true);
 
+        cb_personas.setSelectedIndex(-1);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1482,7 +1691,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField ff_garantía;
     private javax.swing.JFormattedTextField ff_identificacion;
     private javax.swing.JFormattedTextField ff_peso;
-    private javax.swing.JFormattedTextField ff_puntuacion;
     private javax.swing.JFormattedTextField ff_sueldo;
     private javax.swing.JFormattedTextField ff_tamano;
     private javax.swing.JFormattedTextField ff_tiempo;
@@ -1524,6 +1732,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jb_crearArt;
     private javax.swing.JButton jb_eliminar;
     private javax.swing.JButton jb_eliminarArt;
+    private javax.swing.JButton jb_limpiar;
+    private javax.swing.JButton jb_limpiar1;
     private javax.swing.JButton jb_modificar;
     private javax.swing.JButton jb_modificarArt;
     private javax.swing.JLabel jl_cargo;
@@ -1537,6 +1747,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jl_instrucciones;
     private javax.swing.JLabel jl_modificableS;
     private javax.swing.JLabel jl_modificableU;
+    private javax.swing.JLabel jl_modificableU1;
+    private javax.swing.JLabel jl_modificableU2;
     private javax.swing.JLabel jl_numeros;
     private javax.swing.JLabel jl_ocupacion;
     private javax.swing.JLabel jl_pais;
@@ -1557,9 +1769,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton rb_soltero;
     private javax.swing.JRadioButton rb_sucursal;
     private javax.swing.JRadioButton rb_viudo;
-    private javax.swing.JSlider s_estado;
+    private javax.swing.JSlider sl_estado;
+    private javax.swing.JSpinner sp_puntuacion;
     private javax.swing.JTextArea ta_descripcionArt;
-    private javax.swing.JTextArea ta_descripsionComic;
+    private javax.swing.JTextArea ta_descripcionComic;
     private javax.swing.JTextArea ta_instrucciones;
     private javax.swing.JTextArea text;
     private javax.swing.JTextField tf_casaElaboracion;
@@ -1587,29 +1800,51 @@ public class Main extends javax.swing.JFrame {
         cb_receptor.setSelectedIndex(-1);
         cb_registrador.setSelectedIndex(-1);
     }
-    
-    private void cargarArticulosCB(){
+
+    private void cargarArticulosCB() {
         cb_listaArt.setModel(new DefaultComboBoxModel(aa.getArticulos().toArray()));
         cb_listaArt.setSelectedIndex(-1);
     }
-    
-    private void cargarMensajes(){
-        
+
+    private void cargarMensajes() {
+
         DefaultTableModel model = (DefaultTableModel) jt_mensajes.getModel();
-        
+
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
             model.removeRow(i);
         }
-        
+
         for (Mensaje mensaje : rm.getMensajes()) {
-            
+
             Object[] row = new Object[]{
                 mensaje.getEmisor(),
                 mensaje.getReceptor(),
                 mensaje
             };
-            
+            model.addRow(row);
         }
+
+        jt_mensajes.setModel(model);
+
+    }
+
+    private void limpiarCampos2() {
+        tf_titulo.setText("");
+        ta_descripcionArt.setText("");
+        ta_descripcionComic.setText("");
+        ta_instrucciones.setText("");
+        jb_color.setBackground(Color.red);
+        ff_tamano.setText("");
+        tf_editorial.setText("");
+        sp_puntuacion.setValue(100);
+        cb_registrador.setSelectedIndex(-1);
+        sl_estado.setValue(10);
+        ff_volumen.setText("");
+        ff_edicion.setText("");
+        ff_garantía.setText("");
+        tf_casaElaboracion.setText("");
+        tf_pais.setText("");
         
+        cb_listaArt.setSelectedIndex(-1);
     }
 }
